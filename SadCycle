@@ -1,0 +1,45 @@
+#Based on: https://www.reddit.com/r/dailyprogrammer/comments/36cyxf/20150518_challenge_215_easy_sad_cycles/
+
+# By Igor Bich
+
+power = int(input("Please enter a number for the power: "))
+imputNumber = int(input("Please enter an integer: "))
+
+
+def SadCount(impNum, power):
+	result = 0
+	while impNum>=10:
+		result=result+(impNum%10)**power
+		impNum=int(impNum/10)
+
+	if impNum<10:
+		result = result + impNum**power
+
+	return result
+def SadCycle():
+	#first time through
+	singleCheck=SadCount(imputNumber, power)
+	doubleCheck=SadCount(singleCheck, power)
+
+	while singleCheck!=doubleCheck:
+
+		singleCheck=SadCount(singleCheck, power)
+		print("singleCheck")
+		print(singleCheck)
+		
+		doubleCheck=SadCount(doubleCheck, power)
+		print("doublechecks")
+		print(doubleCheck)	
+		
+		doubleCheck=SadCount(doubleCheck, power)
+		print(doubleCheck)
+		
+	print("AND THE RESULTS ARE IN")
+	check=SadCount(singleCheck, power)
+	print(check)
+	while(check!=singleCheck):
+		check=SadCount(check, power)
+		print(check)
+		
+SadCycle()
+input("press any key to exit the program")
